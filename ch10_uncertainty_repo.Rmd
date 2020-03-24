@@ -14,19 +14,71 @@ library(tidyverse)
 # Scene 1
 
 **Prompt:** Explore train data from the **gov.1005.data** with your partner and try to figure out what it means.
+```{r scene 1, echo=FALSE}
+train %>%
+  group_by(republican) %>%
+  count()
+
+train %>%
+  filter(treatment == "Treated") %>%
+  summarize(avg = mean(att_chg))
+
+train %>%
+  filter(treatment == "Control") %>%
+  summarize(avg = mean(att_chg))
+```
 
 # Scene 2
 
 **Prompt:** What is the average income of the treated commuters?
+```{r scene 2, echo=FALSE}
+
+# command option i
+
+avg_income <- train %>% 
+  filter(treatment == "Treated") %>%
+  summarize(avg = mean(income)) %>%
+  pull(avg)
+  
+```
 
 
 # Scene 3
 
+**Prompt:** Create a bootstrap sample of 1000 replications of the mean income of treated commuters.
+```{r scene 3, echo=FALSE}
+
+# pipe is command shift m
+
+bootstrap_sample <- train %>%
+  filter(treatment == "Treated") %>%
+  rep_sample_n(size = 51, replace = TRUE, reps = 1000) %>%
+  group_by(replicate) %>%
+  summarize(avgIncome = mean(income))
+
+```
 
 
 # Scene 4
 
 **Prompt:** Using the bootstrap sample you create, calculate the 50% confidence interval (using the percentile method) of the true mean income of commuters.
+```{r scene 4, echo=FALSE}
+
+set.seed(8)
+train %>%
+  filter(treatment == "Treated") %>%
+  rep_sample_n(size = nrow(.), replace = TRUE, reps = 1000) %>%
+  group_by(replicate) %>%
+  summarize(avgIncome = mean(income)) %>%
+  pull(avgIncome) %>%
+  quantile(probs = c(0.25, 0.75))
+
+train %>%
+  filter(treatment == "Treated") %>%
+  sample_n(size = 1000, replace = TRUE) %>%
+  mutate(inRange = ifelse(income <= 139951.0 & income >= 126372.5, 1, 0))
+```
+
 
 # Scene 5 
 
