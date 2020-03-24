@@ -1,0 +1,81 @@
+---
+title: 'Chapter 10: Confidence Intervals'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(infer)
+library(gov.1005.data)
+library(broom)
+library(tidyverse)
+```
+
+# Scene 1
+
+**Prompt:** Explore train data from the **gov.1005.data** with your partner and try to figure out what it means.
+
+# Scene 2
+
+**Prompt:** What is the average income of the treated commuters?
+
+
+# Scene 3
+
+
+
+# Scene 4
+
+**Prompt:** Using the bootstrap sample you create, calculate the 50% confidence interval (using the percentile method) of the true mean income of commuters.
+
+# Scene 5 
+
+**Prompt:** Compare the 95% confidence interval you calculate using these two method: standard error and percentile.
+
+
+# Scene 6
+
+**Prompt:**  Calculate  the difference between the income of treated and control commuters in our sample. We need to subtract the Treated average from the Control. To do that, having them on the same row is convenient.
+
+
+# Scene 8
+
+**Prompt:**  What about the difference between att_chg of the treated and the controls? Calculate the mean difference, just as we did with income. Is this difference "large?" 
+
+
+# Scene 9
+
+**Prompt:** What is the 99% confidence interval for that difference? 
+
+
+
+
+# Scene 10
+
+**Prompt:** Use `lm()` to calculate the difference between att_chg of the treated and the controls? 
+
+
+
+# Scene 11
+
+**Prompt:** Calculate the 99% confidence interval for the difference between att_chg of the treated and the controls using a bootstrap approach and `lm()`? Note that this actually uses some tricks, like `nest()` and model objects in list columns, which the book only covers in chapter 11. Never hurts to get ahead!
+
+
+
+
+# Scene 13
+
+**Prompt:** Calculate the 95% confidence interval using simple `lm()`?
+
+
+# Challenge Problems
+
+**Prompt:** We started with a cleaned up version of the data from Enos. Can you replicate that data set? Start from the Dataverse.
+
+**Prompt:** We have learned about animation. Create a cool animation showing how we can build the confidence interval by aggregating the results from the bootstrap'd data. (Honestly, I have not thought that out yet.)
+
+**Prompt**: Need to find a data set with lots of categories, so we can calculate lots of confidence intervals.
+
+
+
+
